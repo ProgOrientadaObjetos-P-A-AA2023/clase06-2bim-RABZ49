@@ -21,14 +21,22 @@ public class Enlace {
      * @return 
     */
     private Connection conn;
+    private ArrayList<Ciudad> dataC;
+
+    public ArrayList<Ciudad> obtenerDataC() {
+        return dataC;
+    }
+
+   
        
     public void establecerConexion() {  
-
+        
         try {  
             // db parameters  
             String url = "jdbc:sqlite:bd/base01.bd";  
             // create a connection to the database  
-            conn = DriverManager.getConnection(url);  
+            conn = DriverManager.getConnection(url);
+            // es un metodo estatico, porque no se crea un objeto.
             // System.out.println(conn.isClosed());
             // System.out.println("Connection to SQLite has been established.");  
               
@@ -59,8 +67,8 @@ public class Enlace {
         }  
     }
     
-    public ArrayList<Ciudad> obtenerDataCiudad() {  
-        ArrayList<Ciudad> lista = new ArrayList<>();
+    public void establecerDataCiudad() {  
+        dataC = new ArrayList<>();
         try{  
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
@@ -70,7 +78,7 @@ public class Enlace {
             while(rs.next()){
                 Ciudad miCiudad = new Ciudad(rs.getString("nombre"),
                 rs.getInt("poblacion"));
-                lista.add(miCiudad);
+                dataC.add(miCiudad);
             }
             
             obtenerConexion().close();
@@ -79,7 +87,7 @@ public class Enlace {
              System.out.println(e.getMessage());  
              
         }  
-        return lista;
+        
     }
      
 }  

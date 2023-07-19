@@ -18,10 +18,11 @@ public class Principal {
     public static void main(String[] args) throws SQLException {
         Enlace c = new Enlace();
         Ciudad ciudad = new Ciudad("Cuenca", 100123);
+        c.establecerDataCiudad();
         c.insertarCiudad(ciudad);
         
-        for (int i = 0; i < c.obtenerDataCiudad().size(); i++) {
-            System.out.printf("%s", c.obtenerDataCiudad().get(i));
+        for (int i = 0; i < c.obtenerDataC().size(); i++) {
+            System.out.printf("%s", c.obtenerDataC().get(i));
         }
     }
 }

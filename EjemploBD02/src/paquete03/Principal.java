@@ -14,16 +14,27 @@ import paquete02.Auto;
  * @author reroes
  */
 public class Principal {
+
     public static void main(String[] args) throws SQLException {
         Enlace c = new Enlace();
         Auto a = new Auto();
-        a.establecerPlaca("LBNS0001");
-        a.establecerValorMatricula(200.2);
-        
-        c.insertarAuto(a);
-        
+        String[][] autos = {{"LBC0001", "230.2"},
+        {"LBC0002", "330.2"},
+        {"LBC0003", "430.2"},
+        {"LBC0004", "530.1"},
+        {"LBC0005", "130.2"},};
+        for (int i = 0; i < autos.length; i++) {
+            String placa = autos[i][0];
+            a.establecerPlaca(placa);
+            String valorMatricula = autos[i][1];
+            a.establecerValorMatricula(Double.parseDouble(valorMatricula));
+            c.insertarAuto(a);
+
+        }
+
         for (int i = 0; i < c.obtenerDataAuto().size(); i++) {
-            System.out.printf("%s\n", c.obtenerDataAuto().get(i));
+            
+            System.out.println(c.obtenerDataAuto().get(i));
         }
     }
 }
